@@ -1,0 +1,16 @@
+---
+title: Who ate?
+---
+
+![](group.jpg){fig-align="center"}
+
+| Name             | Role             |
+|------------------|------------------|
+| Morgan Browning  | Ringleader       |
+| David Lopez      | Young Fart       |
+| Akshay Delity    | Pita Connoisseur |
+| Matthew Zwerling | Halloumi Lover   |
+| Jared Creason    | Old Fart         |
+| Marie Lewis      | Falafel Queen    |
+
+: Right to Left

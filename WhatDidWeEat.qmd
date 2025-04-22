@@ -1,0 +1,44 @@
+---
+title: What did we eat?
+execute:
+  echo: false
+  warning: false
+  error: false
+  message: false
+---
+
+```{r}
+library(tidyverse)
+df = readxl::read_xlsx("data.xlsx", sheet = "Small")
+```
+
+## What kinds of food did we have?
+
+```{r}
+df %>%
+  ggplot() +
+  geom_bar(stat = "count", 
+           aes(x = Category, fill = Category)) +
+  labs(y = "Count",
+       x = "") +
+  theme_classic() +
+  scale_fill_brewer(palette = "Dark2", guide = "none")
+```
+
+```{r}
+df %>%
+  pivot_longer(cols = Akshay:Morgan, 
+               names_to = "Name", 
+               values_to = "pctConsumed") %>%
+  ggplot() +
+  geom_bar(stat = "identity",
+           position = "fill",
+           aes(x = Item, y = pctConsumed, fill = Name)) +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_brewer(palette = "Dark2") +
+  # geom_vline(xintercept = (1:14)+0.5) +
+  coord_flip() +
+  theme_classic() +
+  labs(y = "Percent of Item Consumed (%)", x = "") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
