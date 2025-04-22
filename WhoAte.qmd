@@ -6,11 +6,11 @@ title: Who ate?
 
 | Name             | Role             |
 |------------------|------------------|
-| Morgan Browning  | Ringleader       |
-| David Lopez      | Young Fart       |
-| Akshay Delity    | Pita Connoisseur |
-| Matthew Zwerling | Halloumi Lover   |
-| Jared Creason    | Old Fart         |
 | Marie Lewis      | Falafel Queen    |
+| Jared Creason    | Old Fart         |
+| Matthew Zwerling | Halloumi Lover   |
+| Akshay Delity    | Pita Connoisseur |
+| David Lopez      | Young Fart       |
+| Morgan Browning  | Ringleader       |
 
-: Right to Left
+: Left to Right
