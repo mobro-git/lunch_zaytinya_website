@@ -13,7 +13,7 @@ website:
       - href: WhatDidWeEat.qmd
     tools:
       - icon: github
-        href: github.com
+        href: https://www.github.com/mobro-git/lunch_zaytinya_website
       
 format:
   html:
