@@ -1,5 +1,8 @@
 ---
 title: What did we eat?
+format:
+  dashboard:
+    orientation: columns
 execute:
   echo: false
   warning: false
@@ -12,9 +15,13 @@ library(tidyverse)
 df = readxl::read_xlsx("data.xlsx", sheet = "Small")
 ```
 
-## What kinds of food did we have?
+## Column 1 figures
+
+### How did we eat it?
 
 ```{r}
+#| title: How did we eat it?
+
 df %>%
   ggplot() +
   geom_bar(stat = "count", 
@@ -25,7 +32,11 @@ df %>%
   scale_fill_brewer(palette = "Dark2", guide = "none")
 ```
 
+### Who ate how much of it?
+
 ```{r}
+#| title: Who ate how much of it?
+
 df %>%
   pivot_longer(cols = Akshay:Morgan, 
                names_to = "Name", 
@@ -42,3 +53,56 @@ df %>%
   labs(y = "Percent of Item Consumed (%)", x = "") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+## Column 2 - value boxes {width="\"35%"}
+
+```{r}
+df
+```
+
+### 
+
+::: {.valuebox icon="award-fill" color="#d4af37"}
+Most golds:
+
+`{r} summer_most_golds$n`
+
+`{r} summer_most_golds$team`
+:::
+
+::: {.valuebox icon="award-fill" color="#c0c0c0"}
+Most silvers:
+
+`{r} summer_most_silvers$n`
+
+`{r} summer_most_silvers$team`
+:::
+
+::: {.valuebox icon="award-fill" color="#cd7f32"}
+Most bronzes:
+
+`{r} summer_most_bronzes$n`
+
+`{r} summer_most_bronzes$team`
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
