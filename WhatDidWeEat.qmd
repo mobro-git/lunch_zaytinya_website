@@ -2,7 +2,7 @@
 title: What did we eat?
 format:
   dashboard:
-    orientation: columns
+    orientation: rows
 execute:
   echo: false
   warning: false
@@ -12,12 +12,16 @@ execute:
 
 ```{r}
 library(tidyverse)
+
 df = readxl::read_xlsx("data.xlsx", sheet = "Small")
+
+df_long = df %>%
+  pivot_longer(cols = Akshay:Morgan, 
+               names_to = "Name", 
+               values_to = "pctConsumed")
 ```
 
 ## Column 1 figures
-
-### How did we eat it?
 
 ```{r}
 #| title: How did we eat it?
@@ -32,15 +36,10 @@ df %>%
   scale_fill_brewer(palette = "Dark2", guide = "none")
 ```
 
-### Who ate how much of it?
-
 ```{r}
 #| title: Who ate how much of it?
 
-df %>%
-  pivot_longer(cols = Akshay:Morgan, 
-               names_to = "Name", 
-               values_to = "pctConsumed") %>%
+df_long %>%
   ggplot() +
   geom_bar(stat = "identity",
            position = "fill",
@@ -54,39 +53,41 @@ df %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-## Column 2 - value boxes {width="\"35%"}
+## Column 2 - value boxes {width="35%"}
+
+###
 
 ```{r}
-df
+most_items_eaten = df_long %>%
+  filter(pctConsumed > 0) %>%
+  count(Name)
+
+max_eaten = max(most_items_eaten$n)
+
+min_eaten = min(most_items_eaten$n)
 ```
 
-### 
-
 ::: {.valuebox icon="award-fill" color="#d4af37"}
-Most golds:
+Most Items Eaten:
 
-`{r} summer_most_golds$n`
+`{r} max_eaten`
 
-`{r} summer_most_golds$team`
+`{r} unique((most_items_eaten %>% filter(n == max_eaten))$Name)`
 :::
 
 ::: {.valuebox icon="award-fill" color="#c0c0c0"}
 Most silvers:
 
-`{r} summer_most_silvers$n`
+`{r} min_eaten`
 
-`{r} summer_most_silvers$team`
+`{r} unique((most_items_eaten %>% filter(n == min_eaten))$Name)`
 :::
 
 ::: {.valuebox icon="award-fill" color="#cd7f32"}
-Most bronzes:
+Total Items:
 
-`{r} summer_most_bronzes$n`
-
-`{r} summer_most_bronzes$team`
+`{r} length(unique(df$Item))`
 :::
-
-
 
 
 
